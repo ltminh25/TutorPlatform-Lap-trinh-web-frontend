@@ -108,6 +108,7 @@ export default function TutorsList() {
             <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600">
               {"Chọn nhanh những gia sư nổi bật về thành tích, kinh nghiệm và khu vực dạy phù hợp."}
             </p>
+
           </div>
 
           <div className="grid grid-cols-1 gap-x-5 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
