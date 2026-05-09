@@ -77,12 +77,9 @@ export function useLogin() {
                     user: data.userResponse,
                 })
             );
-
             console.log("data.userResponse: ",data.userResponse);
-            console.log("data.userResponse.role:",data.userResponse.role.trim());
-        
+
             const path = getRedirectPath(data.userResponse.role);
-            console.log("navigate đến path:", path);
             window.location.href = path;
         } catch (err) {
             setError(err instanceof Error ? err.message : "Login failed");
