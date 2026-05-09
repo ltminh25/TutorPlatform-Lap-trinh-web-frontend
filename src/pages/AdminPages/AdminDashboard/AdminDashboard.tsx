@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { message } from "antd";
+import { message, Spin } from "antd";
 
 import type {
     StatisticsItemType,
@@ -230,13 +230,8 @@ export default function AdminDashboard() {
 
                 {/* LOADING */}
                 {loading && (
-                    <div
-                        style={{
-                            textAlign: "center",
-                            padding: 30,
-                        }}
-                    >
-                        Đang tải dữ liệu...
+                    <div style={{ textAlign: "center", padding: "40px" }}>
+                        <Spin size="large" />
                     </div>
                 )}
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { adminApi } from "../../../features/admin/api/adminApi";
 import type { FeaturedTutorType, UpdateFeaturedTutorPayload} from "../../../features/admin/model/featuredTutorType";
-import { Button, Card, Form, Input, InputNumber, message, Modal, Popconfirm } from "antd";
+import { Button, Card, Form, Input, InputNumber, message, Modal, Popconfirm, Spin } from "antd";
 import kittyLogo from "../../../assets/hello-kitty-logo.svg";
 import "./FeaturedTutorMana.css";
 import type { Payload } from "recharts/types/component/DefaultTooltipContent";
@@ -124,33 +124,36 @@ export default function FeaturedTutorMana() {
                 </div>
             </div>
             
-            {featuredTutors && (
-                <div
-                    className="featured-tutor-grid"
-                >
-                    {featuredTutors.map((tutor) => (
-                        <Card className="featured-tutor-card">
-                            <div className="featured-tutor-avatar">
-                                <img src={tutor.avatarUrl ?? kittyLogo} />
-                            </div>
-
-                            <div className="featured-tutor-info">
-                                <h3>{tutor.fullName}</h3>
-                                <p>{tutor.school}</p>
-
-                                <p>🏆 {tutor.title}</p>
-                                <p>📘 {tutor.bio}</p>
-                            </div>
-                            
-                            <button onClick={() => {
-                                setSelectedFeaturedTutor(tutor);
-                                handleModalOpen();
-                            }}>
-                                Xem hồ sơ
-                            </button>
-                        </Card>
-                    ))}
+            {loading ? (
+                <div style={{ textAlign: "center", padding: "40px" }}>
+                    <Spin size="large" />
                 </div>
+            ) : (
+                featuredTutors && (
+                    <div className="featured-tutor-grid">
+                        {featuredTutors.map((tutor) => (
+                            <Card className="featured-tutor-card">
+                                <div className="featured-tutor-avatar">
+                                    <img src={tutor.avatarUrl ?? kittyLogo} />
+                                </div>
+
+                                <div className="featured-tutor-info">
+                                    <h3>{tutor.fullName}</h3>
+                                    <p>{tutor.school}</p>
+                                    <p>🏆 {tutor.title}</p>
+                                    <p>📘 {tutor.bio}</p>
+                                </div>
+
+                                <button onClick={() => {
+                                    setSelectedFeaturedTutor(tutor);
+                                    handleModalOpen();
+                                }}>
+                                    Xem hồ sơ
+                                </button>
+                            </Card>
+                        ))}
+                    </div>
+                )
             )}
             <Modal
                 title={`Chi tiết gia sư ${selectedFeturedTutor?.fullName ?? ""}`}

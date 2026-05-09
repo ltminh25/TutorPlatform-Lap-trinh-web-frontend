@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { adminApi } from "../../../features/admin/api/adminApi";
 import type { FilterOptionType, UnregisteredClassType } from "../../../features/admin/model/statisticsType";
 import "./UnregisteredClassMana.css";
-import { Card, Empty, message, Modal, Select } from "antd";
+import { Card, Empty, message, Modal, Select, Spin } from "antd";
 import { ReloadOutlined } from "@ant-design/icons";
 
 const formatCurrency = (value: number) => 
@@ -216,7 +216,9 @@ export default function UnregisteredClassMana() {
             </div>
 
             {loading ? (
-                <p>Đang tải dữ liệu...</p>
+                <div style={{ textAlign: "center", padding: "40px" }}>
+                    <Spin size="large" />
+                </div>
             ) :
                 (classes.length === 0) ? (
                     <Empty description="Không có dữ liệu lớp học" />

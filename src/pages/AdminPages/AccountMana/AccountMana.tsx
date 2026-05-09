@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { adminApi } from "../../../features/admin/api/adminApi";
 import type { AccountType } from "../../../features/admin/model/accountType";
 import "./AccountMana.css";
-import { Button, message, Modal } from "antd";
+import { Button, message, Modal, Spin } from "antd";
 
 export default function AccountMana() {
     const [accounts, setAccounts] = useState<AccountType[]>([]);
@@ -60,7 +60,9 @@ export default function AccountMana() {
             <h2 className="account-title">Quản lý tài khoản</h2>
 
             {loading ? (
-                <p>Đang tải...</p>
+                <div style={{ textAlign: "center", padding: "40px" }}>
+                    <Spin size="large" />
+                </div>
             ) : (
                 <div className="table-wrapper">
                     <table className="account-table">
