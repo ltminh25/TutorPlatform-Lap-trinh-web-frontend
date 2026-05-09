@@ -1,6 +1,6 @@
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../../app/store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../app/store/hooks";
 import { authApi } from "../api/authApi";
 import type { LoginPayload } from "../api/authDTO";
 import { logout, setCredential } from "../model/authSlice";
@@ -35,6 +35,15 @@ export function useLogin() {
     const [formValues, setFormValues] = useState<LoginPayload>(initialLoginValues);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const { status } = useAppSelector((state) => state.auth);
+    const [pendingRole, setPendingRole] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (status === "AUTHENTICATED" && pendingRole) {
+            navigate(getRedirectPath(pendingRole));
+            setPendingRole(null);
+        }
+    }, [status, pendingRole]);
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -81,14 +90,12 @@ export function useLogin() {
 
             console.log("data.userResponse: ",data.userResponse);
         
-            navigate(getRedirectPath(data.userResponse.role));
+            setPendingRole(data.userResponse.role);
         } catch (err) {
             setError(err instanceof Error ? err.message : "Login failed");
         } finally {
             setLoading(false);
         }
-
-
     };
     const handleLogout = async () => {
         try {
