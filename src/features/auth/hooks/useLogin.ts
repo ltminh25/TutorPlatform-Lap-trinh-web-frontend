@@ -35,17 +35,8 @@ export function useLogin() {
     const [formValues, setFormValues] = useState<LoginPayload>(initialLoginValues);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-    const { status } = useAppSelector((state) => state.auth);
-    const [pendingRole, setPendingRole] = useState<string | null>(null);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if (status === "AUTHENTICATED" && pendingRole) {
-            navigate(getRedirectPath(pendingRole));
-            setPendingRole(null);
-        }
-    }, [status, pendingRole]);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -88,8 +79,11 @@ export function useLogin() {
             );
 
             console.log("data.userResponse: ",data.userResponse);
+            console.log("data.userResponse.role:",data.userResponse.role.trim());
         
-            setPendingRole(data.userResponse.role);
+            const path = getRedirectPath(data.userResponse.role);
+            console.log("navigate đến path:", path);
+            window.location.href = path;
         } catch (err) {
             setError(err instanceof Error ? err.message : "Login failed");
         } finally {
