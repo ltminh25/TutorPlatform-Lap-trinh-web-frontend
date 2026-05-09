@@ -32,7 +32,7 @@ export function useRegister() {
 
             setTimeout(() => {
 
-            }, 2000)
+            }, 100000)
 
             const payloadLogin = {
                 username: payload.username,

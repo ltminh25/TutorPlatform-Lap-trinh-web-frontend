@@ -79,7 +79,7 @@ function getErrorMessage(error: AxiosError): string {
 
 const axiosClient = axios.create({
     baseURL: BASE_URL,
-    timeout: 10000,
+    timeout: 100000,
     withCredentials: true,
     headers: {
         "Content-Type": "application/json",
@@ -88,7 +88,7 @@ const axiosClient = axios.create({
 
 const refreshClient = axios.create({
     baseURL: BASE_URL,
-    timeout: 10000,
+    timeout: 100000,
     withCredentials: true,
     headers: {
         "Content-Type": "application/json",
