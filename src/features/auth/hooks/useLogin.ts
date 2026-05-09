@@ -37,6 +37,8 @@ export function useLogin() {
     const [error, setError] = useState("");
     const { status } = useAppSelector((state) => state.auth);
     const [pendingRole, setPendingRole] = useState<string | null>(null);
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (status === "AUTHENTICATED" && pendingRole) {
@@ -44,9 +46,6 @@ export function useLogin() {
             setPendingRole(null);
         }
     }, [status, pendingRole]);
-
-    const dispatch = useAppDispatch();
-    const navigate = useNavigate();
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
