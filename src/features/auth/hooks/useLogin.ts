@@ -28,7 +28,7 @@ function getRedirectPath(role: string): string {
         return "/tutor/dashboard";
     else if(role === "HIRER")
         return "/parent/dashboard";
-    return "/admin/admin-home";
+    return "/admin/admin-dashboard";
 }
 
 export function useLogin() {
