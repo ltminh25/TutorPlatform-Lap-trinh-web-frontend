@@ -2,6 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import TutorCard from "../../features/tutor/components/TutorCard";
 import { useTutorList } from "../../features/tutor/hooks/useTutorList";
+import { Spin } from "antd";
 
 export default function TutorsList() {
   const navigate = useNavigate();
@@ -14,7 +15,9 @@ export default function TutorsList() {
   const itemsPerPage = 8;
   const [page, setPage] = useState(1);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <div style={{ textAlign: "center", padding: "40px" }}>
+                    <Spin size="large" />
+                </div>;
   if (error) return <p>{error}</p>;
 
   const totalPages = Math.ceil(tutors.length / itemsPerPage);

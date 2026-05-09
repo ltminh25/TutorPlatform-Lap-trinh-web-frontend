@@ -1,11 +1,14 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAppSelector } from "../../store/hooks";
+import { Spin } from "antd";
 
 function RequireGuest() {
     const { status } = useAppSelector((state) => state.auth);
 
     if (status === "CHECKING") {
-        return <div>Loading...</div>;
+        return <div style={{ textAlign: "center", padding: "40px" }}>
+                    <Spin size="large" />
+                </div>;
     }
 
     if (status === "AUTHENTICATED") {

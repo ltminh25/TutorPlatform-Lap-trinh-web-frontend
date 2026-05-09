@@ -1,6 +1,7 @@
 ﻿import { FiArrowLeft, FiBookOpen, FiMapPin, FiMonitor, FiUser } from "react-icons/fi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTutorDetail } from "../../features/tutor/hooks/useTutorDetail";
+import { Spin } from "antd";
 
 const isOnlineTeaching = (teachingArea: string) => /online|trực tuyến/i.test(teachingArea);
 
@@ -10,7 +11,9 @@ export default function TutorDetail() {
 
   const { tutor, loading, error } = useTutorDetail(Number(id));
 
-  if (loading) return <p className="p-10 text-center">Loading...</p>;
+  if (loading) return <div style={{ textAlign: "center", padding: "40px" }}>
+                    <Spin size="large" />
+                </div>;
   if (error) return <p className="p-10 text-center text-red-500">{error}</p>;
   if (!tutor) {
     return <p className="p-10 text-center text-gray-500">{"Không tìm thấy gia sư"}</p>;

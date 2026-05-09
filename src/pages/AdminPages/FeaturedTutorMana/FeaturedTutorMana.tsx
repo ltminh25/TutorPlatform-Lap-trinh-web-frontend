@@ -7,7 +7,7 @@ import "./FeaturedTutorMana.css";
 import type { Payload } from "recharts/types/component/DefaultTooltipContent";
 
 export default function FeaturedTutorMana() {
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [featuredTutors, setFeaturedTutors] = useState<FeaturedTutorType[]>([]);
     const [selectedFeturedTutor, setSelectedFeaturedTutor] = useState<FeaturedTutorType | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);

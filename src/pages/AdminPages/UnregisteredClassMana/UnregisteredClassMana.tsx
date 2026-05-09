@@ -26,7 +26,7 @@ export default function UnregisteredClassMana() {
     const [pageSize] = useState(10);
     const [totalClass, setTotalClass] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
-    const [loading, setLoading] = useState(false); 
+    const [loading, setLoading] = useState(true); 
 
     const [classStatus, setClassStatus] = useState<string | undefined>(undefined);
     
