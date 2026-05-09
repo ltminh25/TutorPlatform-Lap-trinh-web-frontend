@@ -56,7 +56,7 @@ export default function TutorStatisticsChart({ title, data }: Props) {
                         tick={{ fontSize: 13 }}
                     />
                     <Tooltip
-                        formatter={(value, name) => [value, "Số lớp nhận"]}
+                        formatter={(value, _name) => [value, "Số lớp nhận"]}
                         labelFormatter={(label) => `Gia sư: ${label}`}
                     />
                     <Legend
