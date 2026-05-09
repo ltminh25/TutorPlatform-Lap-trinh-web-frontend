@@ -1,6 +1,6 @@
-import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../../app/store/hooks";
+import { useAppDispatch } from "../../../app/store/hooks";
 import { authApi } from "../api/authApi";
 import type { LoginPayload } from "../api/authDTO";
 import { logout, setCredential } from "../model/authSlice";
